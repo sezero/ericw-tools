@@ -423,8 +423,11 @@ void Q2_SwapBSPFile (q2bsp_t *bsp, qboolean todisk)
     //
     for (i=0 ; i<bsp->numtexinfo ; i++)
     {
-        for (j=0 ; j<8 ; j++)
-            bsp->texinfo[i].vecs[0][j] = LittleFloat (bsp->texinfo[i].vecs[0][j]);
+        for (j=0 ; j<4 ; j++)
+        {
+            bsp->texinfo[i].vecs[0][j] = LittleFloat(bsp->texinfo[i].vecs[0][j]);
+            bsp->texinfo[i].vecs[1][j] = LittleFloat(bsp->texinfo[i].vecs[1][j]);
+        }
         bsp->texinfo[i].flags = LittleLong (bsp->texinfo[i].flags);
         bsp->texinfo[i].value = LittleLong (bsp->texinfo[i].value);
         bsp->texinfo[i].nexttexinfo = LittleLong (bsp->texinfo[i].nexttexinfo);
