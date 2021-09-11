@@ -892,7 +892,7 @@ brush_t *LoadBrush(const mapbrush_t *mapbrush, const vec3_t rotate_offset, const
             facelist = CreateBrushFaces(&hullbrush, rotate_offset, hullnum);
         }
         else    if (hullnum == 3) {
-            vec3_t size[2] = { {-16, -16, -12}, {16, 16, 16} };
+            vec3_t size[2] = { {-16, -16, -16}, {16, 16, 12} };
             ExpandBrush(&hullbrush, size, facelist);
             FreeBrushFaces(facelist);
             facelist = CreateBrushFaces(&hullbrush, rotate_offset, hullnum);
@@ -914,10 +914,20 @@ brush_t *LoadBrush(const mapbrush_t *mapbrush, const vec3_t rotate_offset, const
             }
         }
         else    if (hullnum == 5) {
+#if 0
+          if (options.hexen2 == 1) { /*original game*/
             vec3_t size[2] = { {-48, -48, -50}, {48, 48, 50} };
             ExpandBrush(&hullbrush, size, facelist);
             FreeBrushFaces(facelist);
             facelist = CreateBrushFaces(&hullbrush, rotate_offset, hullnum);
+          } else
+#endif
+          {
+            vec3_t size[2] = { {-28, -28, -40}, {28, 28, 40} };
+            ExpandBrush(&hullbrush, size, facelist);
+            FreeBrushFaces(facelist);
+            facelist = CreateBrushFaces(&hullbrush, rotate_offset, hullnum);
+          }
         }
     }
     else
